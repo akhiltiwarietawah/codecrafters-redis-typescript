@@ -5,7 +5,10 @@ console.log("Logs from your program will appear here!");
 
 // Uncomment this block to pass the first stage
 const server: net.Server = net.createServer((connection: net.Socket) => {
-  // Handle connection
+  connection.on("data", (data) => {
+    console.log(`Received data: ${data}`);
+        connection.write("Hello from server!");
+  })
 });
 
 server.listen(6379, "127.0.0.1");
